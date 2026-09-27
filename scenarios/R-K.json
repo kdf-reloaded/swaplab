@@ -1,0 +1,58 @@
+{
+  "name": "R-K",
+  "description": "Reloaded maker vs Komodo 2.6.0 taker on netid 8762. Reproduces the maker log of kdf-reloaded issue #11: Komodo pays fee 1000 + burn 158 sat, Reloaded expects burn 289.",
+  "netid": 8762,
+  "subnet": "10.87.62.0/24",
+  "seed_mode": "private",
+  "seed": {
+    "flavor": "K",
+    "ip": "10.87.62.10",
+    "host_port": 7800
+  },
+  "maker": {
+    "flavor": "R",
+    "wallet": "W1",
+    "ip": "10.87.62.20",
+    "host_port": 7801
+  },
+  "taker": {
+    "flavor": "K",
+    "wallet": "W2",
+    "ip": "10.87.62.30",
+    "host_port": 7802
+  },
+  "coins_file": "config/coins.json",
+  "electrums": "config/electrums.json",
+  "coins": [
+    "KMD",
+    "LTC"
+  ],
+  "trade": {
+    "base": "LTC",
+    "rel": "KMD",
+    "price": "8",
+    "volume": "0.00125"
+  },
+  "timeouts": {
+    "rpc": 120,
+    "peers": 180,
+    "order_visible": 180,
+    "swap": 10800
+  },
+  "keep_running_if_active": true,
+  "expect": {
+    "baseline": [
+      {
+        "result": "fail",
+        "event": "TakerFeeValidateFailed",
+        "error_contains": "Burn output 1 value 158 is less than expected 289",
+        "why": "KMD burn split: Reloaded splits 75/25 below the dust-limited range, Komodo pays min_tx_amount to the fee address and burns the rest"
+      }
+    ],
+    "fixed": [
+      {
+        "result": "success"
+      }
+    ]
+  }
+}

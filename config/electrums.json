@@ -1,0 +1,54 @@
+{
+  "KMD": [
+    {
+      "url": "kmd.electrum3.cipig.net:20001",
+      "protocol": "SSL"
+    },
+    {
+      "url": "kmd.electrum3.cipig.net:10001",
+      "protocol": "TCP"
+    },
+    {
+      "url": "kmd.electrum1.cipig.net:20001",
+      "protocol": "SSL"
+    },
+    {
+      "url": "kmd.electrum1.cipig.net:10001",
+      "protocol": "TCP"
+    },
+    {
+      "url": "kmd.electrum2.cipig.net:10001",
+      "protocol": "TCP"
+    },
+    {
+      "url": "kmd.electrum2.cipig.net:20001",
+      "protocol": "SSL"
+    }
+  ],
+  "LTC": [
+    {
+      "url": "ltc.electrum1.cipig.net:20063",
+      "protocol": "SSL"
+    },
+    {
+      "url": "ltc.electrum3.cipig.net:20063",
+      "protocol": "SSL"
+    },
+    {
+      "url": "ltc.electrum2.cipig.net:10063",
+      "protocol": "TCP"
+    },
+    {
+      "url": "ltc.electrum3.cipig.net:10063",
+      "protocol": "TCP"
+    },
+    {
+      "url": "ltc.electrum2.cipig.net:20063",
+      "protocol": "SSL"
+    },
+    {
+      "url": "ltc.electrum1.cipig.net:10063",
+      "protocol": "TCP"
+    }
+  ]
+}

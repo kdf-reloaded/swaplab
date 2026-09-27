@@ -1,0 +1,16 @@
+# Secrets: wallet seeds and imported wallet directories. NEVER commit.
+secrets/
+# Per-node run directories: MM2.json (contains the passphrase), databases, logs.
+run/
+# Exported evidence of runs (scrubbed, but may contain addresses and amounts).
+out/
+# Downloaded or built KDF binaries.
+bin/
+# Local binary configuration (paths on this machine).
+config/binaries.json
+# Anything you put next to the harness by hand.
+*.seed
+*.mnemonic
+*.local.json
+__pycache__/
+*.pyc

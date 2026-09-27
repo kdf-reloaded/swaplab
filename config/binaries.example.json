@@ -1,0 +1,21 @@
+{
+  "_comment": "Copy to config/binaries.json (gitignored) and point each flavor at a Linux x86-64 KDF binary. sha256 is optional: when set, a run refuses a binary with a different hash. 'expect' selects which expectation set of the scenarios applies to this build (see docs/MANUAL.md).",
+  "R": {
+    "label": "KDF Reloaded <commit>",
+    "path": "/absolute/path/to/kdf-reloaded/target-private/release/kdf",
+    "sha256": "",
+    "expect": "baseline"
+  },
+  "K": {
+    "label": "Komodo DeFi Framework 2.6.0-beta_475cdb49b",
+    "path": "bin/kdf_475cdb4/kdf",
+    "sha256": "cf7e95b9d5170dca2b16baf7f9b5a215b916806af17cb891ad6b9aef2bf1d568",
+    "source": "https://github.com/GLEECBTC/komodo-defi-framework/releases/tag/v2.6.0-beta (kdf_475cdb4-linux-x86-64.zip, zip sha256 4bfabfcfe44b33b32799a90dcd8d373ba5847d8b56e820a1ce5d702dfb76e2cc)"
+  },
+  "G": {
+    "label": "GLEEC KDF 3.0.0-beta_d56a7bc50",
+    "path": "bin/kdf_d56a7bc/kdf",
+    "sha256": "1fb2c0f74ec1a8057904e13efdf85130289af6791e87a55e03d843b8eee2991e",
+    "source": "https://github.com/GLEECBTC/komodo-defi-framework/releases/tag/v3.0.0-beta (kdf_d56a7bc-linux-x86-64.zip, zip sha256 20016e48158cc3926febb37bb2c51bce713eb46f53b0be6790ab132ceec2d501)"
+  }
+}

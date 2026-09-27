@@ -1,0 +1,55 @@
+[
+  {
+    "coin": "KMD",
+    "name": "komodo",
+    "fname": "Komodo",
+    "rpcport": 7771,
+    "pubtype": 60,
+    "p2shtype": 85,
+    "wiftype": 188,
+    "txversion": 4,
+    "overwintered": 1,
+    "txfee": 1000,
+    "mm2": 1,
+    "sign_message_prefix": "Komodo Signed Message:\n",
+    "required_confirmations": 4,
+    "avg_blocktime": 60,
+    "protocol": {
+      "type": "UTXO"
+    },
+    "derivation_path": "m/44'/141'",
+    "trezor_coin": "Komodo",
+    "links": {
+      "github": "https://github.com/komodoplatform/komodo",
+      "homepage": "https://komodoplatform.com"
+    }
+  },
+  {
+    "coin": "LTC",
+    "name": "litecoin",
+    "fname": "Litecoin",
+    "is_privacy_coin": true,
+    "sign_message_prefix": "Litecoin Signed Message:\n",
+    "rpcport": 9332,
+    "pubtype": 48,
+    "p2shtype": 50,
+    "wiftype": 176,
+    "txfee": 1000,
+    "dust": 5460,
+    "segwit": true,
+    "bech32_hrp": "ltc",
+    "mm2": 1,
+    "wallet_only": false,
+    "required_confirmations": 2,
+    "avg_blocktime": 150,
+    "protocol": {
+      "type": "UTXO"
+    },
+    "derivation_path": "m/44'/2'",
+    "trezor_coin": "Litecoin",
+    "links": {
+      "github": "https://github.com/litecoin-project/litecoin",
+      "homepage": "https://litecoin.org"
+    }
+  }
+]
