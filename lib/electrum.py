@@ -82,8 +82,15 @@ def kmd_reward(height, value, lock_time, now, kip0001=True):
     return r
 
 
-def utxo_snapshot(servers, address, kmd=False):
-    """Coins of a P2PKH address with age; for KMD also allowed vs pre-KIP reward."""
+# KDF sets the lock time of a KMD transaction from the chain's median time past, which trails the
+# wall clock; 34 min was measured on 2026-09-27 (and the same lag shows in kdf-reloaded issue #11).
+# A wallet computes the reward from its own lock time, so the precondition uses this lag.
+KDF_LOCKTIME_LAG = 40 * 60
+
+
+def utxo_snapshot(servers, address, kmd=False, lag=KDF_LOCKTIME_LAG):
+    """Coins of a P2PKH address with age; for KMD also allowed vs pre-KIP reward as a wallet
+    signing now (lock time = now - lag) would compute them."""
     el = connect_any(servers)
     try:
         tip = el.call("blockchain.headers.subscribe", [])
@@ -93,12 +100,13 @@ def utxo_snapshot(servers, address, kmd=False):
             row = {"tx_hash": u["tx_hash"], "tx_pos": u["tx_pos"], "height": u["height"], "value": u["value"]}
             if kmd and u["height"] > 0:
                 t = el.call("blockchain.transaction.get", [u["tx_hash"], True])
-                now = int(time.time())
+                now = int(time.time()) - lag
                 row.update(locktime=t.get("locktime"), blocktime=t.get("blocktime"),
                            reward_allowed=kmd_reward(u["height"], u["value"], t.get("locktime", 0), now),
                            reward_pre_kip=kmd_reward(u["height"], u["value"], t.get("locktime", 0), now,
                                                      kip0001=False),
-                           age_minutes=(now - (t.get("blocktime") or now)) // 60)
+                           age_minutes=(int(time.time()) - (t.get("blocktime") or now)) // 60,
+                           minutes_since_locktime_at_signing=(now - t.get("locktime", now)) // 60)
             out.append(row)
         return {"address": address, "tip": tip_h, "utxos": out,
                 "bug1_precondition": any(r.get("reward_pre_kip", 0) > r.get("reward_allowed", 0)

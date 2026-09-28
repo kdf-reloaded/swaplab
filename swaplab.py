@@ -141,6 +141,19 @@ def enable_coins(node_rpc, coins, electrums):
     return res
 
 
+def unfinished_swaps(node_rpc):
+    """uuids in active_swaps whose status is not Finished (a finished swap can stay listed as
+    active for a moment after its last event)."""
+    out = []
+    for u in node_rpc.legacy("active_swaps", raw=True).get("uuids", []) or []:
+        try:
+            if "Finished" not in swap_events(swap_status(node_rpc, u)):
+                out.append(u)
+        except (KdfError, OSError, ValueError):
+            out.append(u)
+    return out
+
+
 def find_hex_txs(text):
     """Raw transactions embedded in an error string (KDF puts the rejected tx hex there)."""
     return [h for h in re.findall(r"\b([0-9a-f]{200,})\b", text or "") if len(h) % 2 == 0]
@@ -264,7 +277,7 @@ def cmd_run(a):
             result["bug1_precondition"] = bug1
             with open(os.path.join(out, "precondition.json"), "w") as f:
                 json.dump(pre, f, indent=1)
-            log(f"bug-1 precondition on the taker's KMD (>=10 KMD coin older than 1 h): {bug1}")
+            log(f"bug-1 precondition on the taker's KMD (a >=10 KMD coin whose reward a wallet signing now would claim): {bug1}")
             if short and not a.dry_run:
                 raise RuntimeError("insufficient balance: " + "; ".join(short))
             if short:
@@ -272,7 +285,7 @@ def cmd_run(a):
                 log("dry run: KDF refuses orders without funds, so the run ends before the order step")
                 return finish(a, sc, ns, stack, out, result, statuses, uuid, keep_running=False, log=log)
             stages["balances_ok"] = not short
-            active = {r: rpcs[r].legacy("active_swaps", raw=True).get("uuids", []) for r in ("maker", "taker")}
+            active = {r: unfinished_swaps(rpcs[r]) for r in ("maker", "taker")}
             if any(active.values()) and not a.allow_active:
                 raise RuntimeError(f"unfinished swaps exist: {active}; let them finish or use recover")
 
@@ -326,7 +339,7 @@ def cmd_run(a):
                     break
                 time.sleep(15)
             stages["swap_finished"] = all(swap_summary(s)["finished"] for s in statuses.values())
-            left = {r: rpcs[r].legacy("active_swaps", raw=True).get("uuids", []) for r in ("maker", "taker")}
+            left = {r: unfinished_swaps(rpcs[r]) for r in ("maker", "taker")}
             keep_running = any(left.values()) and sc.get("keep_running_if_active", True) and not a.stop_anyway
             return finish(a, sc, ns, stack, out, result, statuses, uuid, keep_running, log, bug1=bug1,
                           expect=sc["expect"].get(expect_key, []))
@@ -427,7 +440,7 @@ def write_summary(out, sc, result, txs, rule, ok):
     L.append(f"Netid {sc['netid']}; trade: taker buys {sc['trade']['volume']} {sc['trade']['base']} "
              f"at {sc['trade']['price']} {sc['trade']['rel']}; expectations '{result['expect_set']}'")
     L.append("Stages: " + " ".join(("[x] " if v_ else "[ ] ") + k for k, v_ in st.items()))
-    L.append(f"Bug-1 precondition (taker KMD coin >=10 KMD older than 1 h): {result.get('bug1_precondition')}")
+    L.append(f"Bug-1 precondition (taker has a >=10 KMD coin whose reward a wallet signing now would claim): {result.get('bug1_precondition')}")
     if result.get("uuid"):
         L.append(f"Swap uuid: {result['uuid']}")
     for r, s in result.get("summaries", {}).items():

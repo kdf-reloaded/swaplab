@@ -244,7 +244,11 @@ After `wallet addresses`, send:
 hour** carries a KMD reward, which the next spend claims. Wallets that compute this reward
 wrongly produce transactions the network rejects (`bad-txns-in-belowout`). To test that:
 - send W2 one single transaction of at least 10 KMD
-- wait an hour
+- wait about **100 minutes**, not just one hour. KDF signs KMD transactions with a lock time
+  taken from the chain's median time past, which trails the clock by about 35 minutes. The
+  reward counts from the coin's own lock time, which the sending wallet may also set some
+  minutes before the coin is mined, and it starts only after 60 minutes. The harness applies a
+  40-minute lag when it checks the precondition (`KDF_LOCKTIME_LAG` in `lib/electrum.py`).
 - run a scenario where the taker is the implementation under test
 
 The run records whether this precondition held (`bug1_precondition` in `results.json` and
@@ -282,7 +286,7 @@ rule that applies decides:
 ```
 
 - **`if`** (optional): `bug1_precondition`. The rule applies only when the taker held a
-  ≥10 KMD coin older than one hour.
+  ≥10 KMD coin old enough that a wallet signing now would claim its reward (about 100 minutes, see [Funding](#funding)).
 - **`result`**: `success` means both sides finished without a failure event. `fail` means the
   swap failed.
 - **`event`** and **`error_contains`**: for `fail`, text that must appear in the failure
@@ -294,7 +298,7 @@ rule that applies decides:
 The shipped expectations describe KDF Reloaded before and after the fix of two KMD defects. On
 the `baseline` build:
 - **KIP-0001 missing:** the build computes KMD rewards without the 2023 reduction, so a spend
-  of a ≥10 KMD coin older than one hour is rejected.
+  of a ≥10 KMD coin whose reward it claims is rejected.
 - **Burn split:** on netid 8762, for taker fees between the KMD minimum and 4/3 of it, the build
   splits the fee 75/25 while Komodo KDF sends the minimum to the fee address and burns the rest.
 

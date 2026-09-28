@@ -5,7 +5,7 @@
 #   e.g. scripts/run-matrix.sh --wait-bug1 W2 R-R G-R R-K K-R R-G
 #
 # --wait-bug1 WALLET  first wait (up to 4 h) until WALLET's KMD address holds a coin that carries
-#                     a KMD reward (>= 10 KMD, older than one hour), so reward handling is tested.
+#                     a KMD reward a wallet signing now would claim (>= 10 KMD, about 100 min old; see docs/MANUAL.md#funding).
 # The matrix stops early if a run leaves containers running (a swap still active): the next run
 # would refuse to start anyway, and the wallet must not be used twice.
 # Log: out/matrix-<timestamp>.log (each run's SUMMARY.md is appended to it).
