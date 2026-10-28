@@ -74,10 +74,11 @@ class Node:
     """One KDF process in one container. role: seed | maker | taker | wallet."""
 
     def __init__(self, role, flavor, binary, netid, ip, host_port, wallet=None, coins_file=None,
-                 seednodes=(), disable_p2p=False):
+                 seednodes=(), disable_p2p=False, extra=None):
         self.role, self.flavor, self.binary, self.netid = role, flavor, binary, netid
         self.ip, self.host_port, self.wallet = ip, host_port, wallet
         self.coins_file, self.seednodes, self.disable_p2p = coins_file, list(seednodes), disable_p2p
+        self.extra = dict(extra or {})
         who = f"seed-{flavor}" if role == "seed" else f"{flavor}-{wallet}"
         self.name = f"{netid}-{who}"
         self.dir = os.path.join(RUN, self.name)
@@ -124,6 +125,7 @@ class Node:
             cfg.update(seednodes=self.seednodes, disable_p2p=False)
         if hd:
             cfg["enable_hd"] = True
+        cfg.update(self.extra)  # scenario-supplied MM2.json keys (mm2_extra)
         fd = os.open(self.mm2_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
         with os.fdopen(fd, "w") as f:
             json.dump(cfg, f, indent=1)
@@ -177,6 +179,7 @@ class Stack:
                 f'    user: "{uid}:{gid}"',
                 "    environment:",
                 f"      MM_LOG: /kdf/logs/{self.run_id}.log",
+                *[f"      {k}: {v}" for k, v in getattr(n, "env", {}).items()],
                 "    volumes:",
                 f"      - {n.dir}:/kdf",
                 f"      - {os.path.abspath(n.binary)}:/usr/local/bin/kdf:ro",

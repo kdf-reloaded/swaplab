@@ -97,12 +97,14 @@ def build_nodes(sc, bins):
     coins_file = rel(sc["coins_file"])
     seed_ip = sc["seed"]["ip"]
     seed = nodes.Node("seed", sc["seed"]["flavor"], binary_for(sc["seed"]["flavor"], bins), sc["netid"],
-                      seed_ip, sc["seed"]["host_port"], coins_file=coins_file)
+                      seed_ip, sc["seed"]["host_port"], coins_file=coins_file,
+                      extra={**sc.get("mm2_extra", {}), **sc["seed"].get("mm2_extra", {})})
     out = {"seed": seed}
     for role in ("maker", "taker"):
         s = sc[role]
         out[role] = nodes.Node(role, s["flavor"], binary_for(s["flavor"], bins), sc["netid"], s["ip"],
-                               s["host_port"], wallet=s["wallet"], coins_file=coins_file, seednodes=[seed_ip])
+                               s["host_port"], wallet=s["wallet"], coins_file=coins_file, seednodes=[seed_ip],
+                               extra={**sc.get("mm2_extra", {}), **s.get("mm2_extra", {})})
     return out
 
 
@@ -130,9 +132,62 @@ def peers_ok(node_rpc, subnet):
     return (bool(peers) and not outside), {"peers": peers, "outside_subnet": outside}
 
 
-def enable_coins(node_rpc, coins, electrums):
+def _task_wait(node_rpc, status_method, task_id, done_when, timeout=900):
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        s = node_rpc.v2(status_method, {"task_id": task_id}, raw=True)
+        st = (s.get("result") or {}).get("status")
+        if st in ("Ok", "Error"):
+            return s
+        time.sleep(3)
+    raise RuntimeError(f"{status_method} timed out")
+
+
+def enable_special(node_rpc, coin, spec):
+    """Activation that is not a plain electrum one. spec['kind']: zcoin | sia | evm | token (token
+    coins are activated together with their platform and only read here)."""
+    kind = spec["kind"]
+    if kind == "zcoin":
+        servers = spec["light_wallet_d_servers"]
+        r = node_rpc.v2("task::enable_z_coin::init", {"ticker": coin, "activation_params": {
+            "mode": {"rpc": "Light", "rpc_data": {"light_wallet_d_servers": servers,
+                                                  "sync_params": spec["sync_params"],
+                                                  **({"electrum_servers": spec["electrum_servers"]} if spec.get("electrum_servers") else {})}},
+            "zcash_params_path": "/kdf/zcash-params"}}, raw=True)
+        if "result" not in r:
+            raise RuntimeError(f"{node_rpc.name}: {coin} activation init rejected: {str(r)[:500]}")
+        s = _task_wait(node_rpc, "task::enable_z_coin::status", r["result"]["task_id"], None)
+        if s["result"]["status"] != "Ok":
+            raise RuntimeError(f"{node_rpc.name}: enabling {coin} failed: {s}")
+    elif kind == "sia":
+        r = node_rpc.v2("task::enable_sia::init", {"ticker": coin, "activation_params": {
+            "client_conf": {"server_url": spec["server_url"]}}}, raw=True)
+        s = _task_wait(node_rpc, "task::enable_sia::status", r["result"]["task_id"], None)
+        if s["result"]["status"] != "Ok":
+            raise RuntimeError(f"{node_rpc.name}: enabling {coin} failed: {s}")
+    elif kind == "evm":
+        r = node_rpc.v2("enable_eth_with_tokens", {
+            "ticker": coin, "mm2": 1, "swap_contract_address": spec["swap_contract_address"],
+            "fallback_swap_contract": spec["fallback_swap_contract"],
+            "nodes": [{"url": u} for u in spec["nodes"]],
+            "erc20_tokens_requests": [{"ticker": t} for t in spec.get("tokens", [])],
+            "get_balances": False}, raw=True)
+        if r.get("error"):
+            raise RuntimeError(f"{node_rpc.name}: enabling {coin} failed: {r['error']}")
+    # kind == "token": nothing to do here
+    b = node_rpc.legacy("my_balance", raw=True, coin=coin)
+    if b.get("error"):
+        raise RuntimeError(f"{node_rpc.name}: balance of {coin} failed: {b['error']}")
+    return {"address": b.get("address"), "balance": b.get("balance"), "unspendable": b.get("unspendable_balance")}
+
+
+def enable_coins(node_rpc, coins, electrums, special=None):
     res = {}
+    special = special or {}
     for c in coins:
+        if c in special and special[c]["kind"] != "electrum":
+            res[c] = enable_special(node_rpc, c, special[c])
+            continue
         r = node_rpc.electrum(c, electrums[c], raw=True)
         if r.get("error"):
             raise RuntimeError(f"{node_rpc.name}: enabling {c} failed: {r['error']}")
@@ -245,7 +300,7 @@ def cmd_run(a):
             log("private mesh ok: " + ", ".join(f"{r} peers {len(m['peers'])}" for r, m in mesh.items()))
 
             # ---- coins
-            enabled = {r: enable_coins(rpcs[r], sc["coins"], electrums) for r in ("maker", "taker")}
+            enabled = {r: enable_coins(rpcs[r], sc["coins"], electrums, sc.get("special")) for r in ("maker", "taker")}
             stages["coins_enabled"] = True
             result["wallets"] = enabled
             log("coins enabled: " + "; ".join(
@@ -290,14 +345,35 @@ def cmd_run(a):
                 raise RuntimeError(f"unfinished swaps exist: {active}; let them finish or use recover")
 
             # ---- order
-            order = setprice(rpcs["maker"], base, relc, t["price"], t["volume"])
+            order = setprice(rpcs["maker"], base, relc, t["price"], t["volume"], **t.get("setprice_extra", {}))
             log(f"maker order {order}: sells {t['volume']} {base} at {t['price']} {relc}")
-            wait_for("order visible on the taker",
-                     lambda: any(o.get("uuid") == order
-                                 for o in orderbook(rpcs["taker"], base, relc).get("asks", [])),
-                     sc["timeouts"]["order_visible"], 3)
+            zhtlc_ob = {"err": None}
+
+            def _visible():
+                try:
+                    return any(o.get("uuid") == order
+                               for o in orderbook(rpcs["taker"], base, relc).get("asks", []))
+                except KdfError as e:
+                    if "not supported for ZHTLC" in str(e):
+                        zhtlc_ob["err"] = str(e)
+                        return True  # the orderbook RPC itself refuses ZHTLC pairs: recorded, not retried
+                    raise
+            wait_for("order visible on the taker", _visible, sc["timeouts"]["order_visible"], 3)
+            if zhtlc_ob["err"]:
+                log("FINDING: the taker's orderbook RPC fails for this pair: " + zhtlc_ob["err"])
+                result["orderbook_error"] = zhtlc_ob["err"]
+                time.sleep(20)  # no way to see the order; give gossip time, then take it by uuid
+            try:  # raw evidence of what the taker's orderbook / best_orders answer for this pair
+                ob_raw = {"orderbook": rpcs["taker"].legacy("orderbook", raw=True, base=base, rel=relc),
+                          "best_orders_buy_" + base: rpcs["taker"].legacy("best_orders", raw=True, coin=base, action="buy", volume=t["volume"]),
+                          "best_orders_sell_" + relc: rpcs["taker"].legacy("best_orders", raw=True, coin=relc, action="sell", volume="0.001"),
+                          "best_orders_buy_" + relc: rpcs["taker"].legacy("best_orders", raw=True, coin=relc, action="buy", volume="0.001")}
+                with open(os.path.join(out, "orderbook-raw.json"), "w") as fh:
+                    json.dump(ob_raw, fh, indent=1)
+            except Exception as e:  # noqa
+                log(f"orderbook-raw capture failed: {e}")
             stages["order_visible"] = True
-            log("order visible on the taker")
+            log("order visible on the taker" if not zhtlc_ob["err"] else "order not checkable on the taker; taking it by uuid")
             if a.dry_run:
                 rpcs["maker"].legacy("cancel_order", raw=True, uuid=order)
                 log("dry run: order cancelled, no funds moved")
@@ -486,10 +562,10 @@ def cmd_wallet(a):
 def wallet_addresses(a):
     bins = binaries()
     coins = a.coins.split(",")
-    electrums = load_json("config/electrums.json")
+    electrums = load_json(a.electrums_file)
     with Lock():
         n = nodes.Node("wallet", a.flavor, binary_for(a.flavor, bins), a.netid, "10.99.0.20", 7809,
-                       wallet=a.name, coins_file=rel("config/coins.json"), disable_p2p=True)
+                       wallet=a.name, coins_file=rel(a.coins_file), disable_p2p=True)
         n.name = f"addr-{a.flavor}-{a.name}"
         n.dir = os.path.join(nodes.RUN, n.name)
         nodes.ensure_image()
@@ -550,7 +626,7 @@ def cmd_recover(a):
         for r in ("maker", "taker"):
             k = ns[r].rpc()
             wait_for(f"{r} rpc", k.version, 120, 2)
-            enable_coins(k, sc["coins"], electrums)
+            enable_coins(k, sc["coins"], electrums, sc.get("special"))
             res = k.legacy("recover_funds_of_swap", raw=True, params={"uuid": a.uuid})
             print(f"{r}: {json.dumps(res)[:1500]}")
         print("containers left running so pending refunds can complete; stop with "
@@ -571,6 +647,8 @@ def main():
     w.add_argument("--flavor", default="R")
     w.add_argument("--netid", type=int, default=8762)
     w.add_argument("--coins", default="KMD,LTC")
+    w.add_argument("--coins-file", default="config/coins.json")
+    w.add_argument("--electrums-file", default="config/electrums.json")
     r = sub.add_parser("run")
     r.add_argument("scenario")
     r.add_argument("--dry-run", action="store_true", help="stop after the order is visible; no funds move")
