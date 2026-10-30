@@ -1,0 +1,6 @@
+# Helper image for the fault-injection examples: tc (iproute2) for policing and netem, run with
+# --net container:<node> --cap-add NET_ADMIN so it shapes the traffic of one node container.
+#   docker build -t swaplab/netem:1 -f scripts/examples/Dockerfile.netem docker/
+FROM swaplab/kdf-runtime:debian12
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends iproute2 && rm -rf /var/lib/apt/lists/*

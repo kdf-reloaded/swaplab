@@ -1,0 +1,693 @@
+[
+ {
+  "coin": "RIN",
+  "name": "rincoin",
+  "fname": "Rincoin",
+  "is_privacy_coin": true,
+  "sign_message_prefix": "rincoin Signed Message:\n",
+  "rpcport": 9556,
+  "pubtype": 60,
+  "p2shtype": 122,
+  "wiftype": 188,
+  "txfee": 10000,
+  "dust": 5460,
+  "segwit": true,
+  "bech32_hrp": "rin",
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/9555'",
+  "links": {
+   "github": "https://github.com/Rin-coin/rincoin",
+   "homepage": "https://rincoin.org"
+  }
+ },
+ {
+  "coin": "KMD",
+  "name": "komodo",
+  "fname": "Komodo",
+  "rpcport": 7771,
+  "pubtype": 60,
+  "p2shtype": 85,
+  "wiftype": 188,
+  "txversion": 4,
+  "overwintered": 1,
+  "txfee": 1000,
+  "mm2": 1,
+  "sign_message_prefix": "Komodo Signed Message:\n",
+  "required_confirmations": 4,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/141'",
+  "trezor_coin": "Komodo",
+  "links": {
+   "github": "https://github.com/komodoplatform/komodo",
+   "homepage": "https://komodoplatform.com"
+  }
+ },
+ {
+  "coin": "LTC",
+  "name": "litecoin",
+  "fname": "Litecoin",
+  "is_privacy_coin": true,
+  "sign_message_prefix": "Litecoin Signed Message:\n",
+  "rpcport": 9332,
+  "pubtype": 48,
+  "p2shtype": 50,
+  "wiftype": 176,
+  "txfee": 1000,
+  "dust": 5460,
+  "segwit": true,
+  "bech32_hrp": "ltc",
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 150,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/2'",
+  "trezor_coin": "Litecoin",
+  "links": {
+   "github": "https://github.com/litecoin-project/litecoin",
+   "homepage": "https://litecoin.org"
+  }
+ },
+ {
+  "coin": "DOGE",
+  "name": "dogecoin",
+  "fname": "Dogecoin",
+  "sign_message_prefix": "Dogecoin Signed Message:\n",
+  "rpcport": 22555,
+  "pubtype": 30,
+  "p2shtype": 22,
+  "wiftype": 158,
+  "txfee": 1000000,
+  "dust": 1000000,
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/3'",
+  "trezor_coin": "Dogecoin",
+  "links": {
+   "github": "https://github.com/dogecoin/dogecoin",
+   "homepage": "https://dogecoin.com"
+  }
+ },
+ {
+  "coin": "DINGO",
+  "name": "dingocoin",
+  "fname": "Dingocoin",
+  "sign_message_prefix": "Dingocoin Signed Message:\n",
+  "rpcport": 34646,
+  "pubtype": 30,
+  "p2shtype": 22,
+  "wiftype": 158,
+  "txfee": 100000000,
+  "dingo_fee": true,
+  "dust": 100000000,
+  "mm2": 1,
+  "required_confirmations": 5,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/3'",
+  "links": {
+   "github": "https://github.com/dingocoin/dingocoin",
+   "homepage": "https://dingocoin.com"
+  }
+ },
+ {
+  "coin": "SHIC",
+  "name": "shibacoin",
+  "fname": "Shibacoin",
+  "rpcport": 33863,
+  "pubtype": 63,
+  "p2shtype": 22,
+  "wiftype": 158,
+  "segwit": false,
+  "txfee": 1000000,
+  "dingo_fee": true,
+  "dust": 1000000,
+  "mm2": 1,
+  "sign_message_prefix": "Shibacoin Signed Message:\n",
+  "required_confirmations": 5,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/74'",
+  "links": {
+   "github": "https://github.com/shibacoinppc/shibacoin",
+   "homepage": "https://shibapow.org/"
+  }
+ },
+ {
+  "coin": "TRMP",
+  "name": "trumpow",
+  "fname": "TrumPow",
+  "rpcport": 33883,
+  "pubtype": 65,
+  "p2shtype": 28,
+  "wiftype": 151,
+  "segwit": false,
+  "txfee": 1000000,
+  "dingo_fee": true,
+  "dust": 1000000,
+  "mm2": 1,
+  "sign_message_prefix": "TrumPow Signed Message:\n",
+  "required_confirmations": 5,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/1707'",
+  "links": {
+   "github": "https://github.com/trumpowppc/trumpow",
+   "homepage": "https://trumpow.meme"
+  }
+ },
+ {
+  "coin": "XVG",
+  "name": "VERGE",
+  "fname": "Verge",
+  "isPoS": 1,
+  "sign_message_prefix": "VERGE Signed Message:\n",
+  "rpcport": 20102,
+  "pubtype": 30,
+  "p2shtype": 33,
+  "wiftype": 158,
+  "decimals": 6,
+  "segwit": true,
+  "bech32_hrp": "vg",
+  "txfee": 200000,
+  "dingo_fee": true,
+  "dust": 200000,
+  "mm2": 1,
+  "required_confirmations": 10,
+  "avg_blocktime": 30,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/77'"
+ },
+ {
+  "coin": "SYS",
+  "name": "syscoin",
+  "fname": "Syscoin",
+  "sign_message_prefix": "Syscoin Signed Message:\n",
+  "rpcport": 8370,
+  "pubtype": 63,
+  "p2shtype": 5,
+  "wiftype": 128,
+  "txfee": 10000,
+  "dust": 1820,
+  "segwit": true,
+  "bech32_hrp": "sys",
+  "required_confirmations": 5,
+  "avg_blocktime": 60,
+  "mm2": 1,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/57'",
+  "trezor_coin": "Syscoin",
+  "links": {
+   "github": "https://github.com/syscoin/syscoin",
+   "homepage": "https://syscoin.org"
+  }
+ },
+ {
+  "coin": "NMC",
+  "name": "namecoin",
+  "fname": "Namecoin",
+  "sign_message_prefix": "Namecoin Signed Message:\n",
+  "rpcport": 8336,
+  "pubtype": 52,
+  "p2shtype": 13,
+  "wiftype": 180,
+  "txfee": 0,
+  "segwit": true,
+  "bech32_hrp": "nc",
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 600,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/7'",
+  "trezor_coin": "Namecoin",
+  "links": {
+   "github": "https://github.com/namecoin/namecoin-core",
+   "homepage": "https://namecoin.org"
+  }
+ },
+ {
+  "coin": "DOI",
+  "name": "doichain",
+  "fname": "Doichain",
+  "sign_message_prefix": "Doichain Signed Message:\n",
+  "rpcport": 8339,
+  "pubtype": 52,
+  "p2shtype": 13,
+  "wiftype": 180,
+  "txfee": 1000,
+  "dust": 5460,
+  "segwit": true,
+  "bech32_hrp": "dc",
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 600,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/7070'"
+ },
+ {
+  "coin": "XMY",
+  "name": "myriadcoin",
+  "fname": "Myriad",
+  "sign_message_prefix": "Myriadcoin Signed Message:\n",
+  "rpcport": 8332,
+  "pubtype": 50,
+  "p2shtype": 9,
+  "wiftype": 178,
+  "txfee": 10000,
+  "segwit": true,
+  "bech32_hrp": "my",
+  "mm2": 1,
+  "required_confirmations": 3,
+  "avg_blocktime": 240,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/90'"
+ },
+ {
+  "coin": "RIC",
+  "name": "riecoin",
+  "fname": "Riecoin",
+  "sign_message_prefix": "Riecoin Signed Message:\n",
+  "rpcport": 28332,
+  "pubtype": 60,
+  "p2shtype": 65,
+  "wiftype": 128,
+  "segwit": true,
+  "bech32_hrp": "ric",
+  "txfee": 10000,
+  "mm2": 1,
+  "required_confirmations": 4,
+  "avg_blocktime": 150,
+  "protocol": {
+   "type": "UTXO",
+   "chain_variant": "BTC",
+   "header_layout": "riecoin"
+  },
+  "derivation_path": "m/44'/143'"
+ },
+ {
+  "coin": "MEWC",
+  "name": "meowcoin",
+  "fname": "Meowcoin",
+  "sign_message_prefix": "Meowcoin Signed Message:\n",
+  "rpcport": 9766,
+  "pubtype": 50,
+  "p2shtype": 122,
+  "wiftype": 112,
+  "segwit": false,
+  "txfee": 1000000,
+  "dust": 1000000,
+  "mm2": 1,
+  "required_confirmations": 3,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO",
+   "chain_variant": "BTC",
+   "header_layout": "kawpow_auxpow_mixed"
+  },
+  "derivation_path": "m/44'/1669'",
+  "links": {
+   "github": "https://github.com/Meowcoin-Foundation/Meowcoin",
+   "homepage": "https://www.mewccrypto.com/"
+  }
+ },
+ {
+  "coin": "RXD",
+  "name": "radiant",
+  "fname": "Radiant",
+  "rpcport": 7332,
+  "pubtype": 0,
+  "p2shtype": 5,
+  "wiftype": 128,
+  "txfee": 10000000,
+  "segwit": false,
+  "fork_id": "0x40",
+  "signature_version": "fork_id_rxd",
+  "mm2": 1,
+  "sign_message_prefix": "Bitcoin Signed Message:\n",
+  "required_confirmations": 2,
+  "avg_blocktime": 300,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/44'/512'",
+  "trezor_coin": "Radiant",
+  "links": {
+   "github": "https://github.com/Radiant-Core/Radiant-Core",
+   "homepage": "https://radiantblockchain.org"
+  }
+ },
+ {
+  "coin": "ARRR",
+  "asset": "PIRATE",
+  "fname": "Pirate",
+  "is_privacy_coin": true,
+  "txversion": 4,
+  "overwintered": 1,
+  "mm2": 1,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "ZHTLC",
+   "protocol_data": {
+    "consensus_params": {
+     "overwinter_activation_height": 152855,
+     "sapling_activation_height": 152855,
+     "ironwood_activation_height": 4161185,
+     "blossom_activation_height": null,
+     "heartwood_activation_height": null,
+     "canopy_activation_height": null,
+     "coin_type": 133,
+     "hrp_sapling_extended_spending_key": "secret-extended-key-main",
+     "hrp_sapling_extended_full_viewing_key": "zxviews",
+     "hrp_sapling_payment_address": "zs",
+     "b58_pubkey_address_prefix": [
+      28,
+      184
+     ],
+     "b58_script_address_prefix": [
+      28,
+      189
+     ]
+    },
+    "check_point_block": {
+     "height": 1900000,
+     "time": 1652512363,
+     "hash": "44797f3bb78323a7717007f1e289a3689e0b5b3433385dbd8e6f6a1700000000",
+     "sapling_tree": "01e40c26f4a28071535b95ae637d30a209531e92a33de0a649e51183771025fd0f016cdc51442fcb328d047a709dc0f41e0173953404711045b3ef3036d7fd4151271501d6c94c5ce6787826af809aaee83768c4b7d4f02c8dc2d24cf60ed5f127a5d730018a752ea9d9efb3e1ac0e6e705ac9f7f9863cfa8f612ad43802175338d8d7cc6000000001fc3542434eff03075ea5f0a64f1dfb2f042d281b1a057e9f6c765b533ce51219013ad9484b1e901e62b93e7538f913dcb27695380c3bc579e79f5cc900f28e596e0001431da5f01fe11d58300134caf5ac76e0b1b7486fd02425dd8871bca4afa94d4b01bb39de1c1d10a25ce0cc775bc74b6b0f056c28639e7c5b7651bb8460060085530000000001732ddf661e68c9e335599bb0b18b048d2f1c06b20eabd18239ad2f3cc45fa910014496bab5eedab205b5f2a206bd1db30c5bc8bc0c1914a102f87010f3431be21a0000010b5fd8e7610754075f936463780e85841f3ab8ca2978f9afdf7c2c250f16a75f01db56bc66eb1cd54ec6861e5cf24af2f4a17991556a52ca781007569e95b9842401c03877ecdd98378b321250640a1885604d675aaa50380e49da8cfa6ff7deaf15"
+    },
+    "z_derivation_path": "m/32'/141'"
+   }
+  },
+  "derivation_path": "m/44'/141'",
+  "required_confirmations": 5,
+  "requires_notarization": false
+ },
+ {
+  "coin": "SC",
+  "fname": "Siacoin",
+  "mm2": 1,
+  "required_confirmations": 1,
+  "avg_blocktime": 600,
+  "protocol": {
+   "type": "SIA"
+  }
+ },
+ {
+  "coin": "ETH-ARB20",
+  "name": "eth_arb20",
+  "fname": "Ethereum",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 42161,
+  "required_confirmations": 10,
+  "avg_blocktime": 0.25,
+  "protocol": {
+   "type": "ETH",
+   "protocol_data": {
+    "chain_id": 42161
+   }
+  },
+  "derivation_path": "m/44'/60'",
+  "max_eth_tx_type": 2,
+  "swap_gas_fee_policy": "Medium",
+  "estimate_gas_mult": 1.3,
+  "gas_limit": {
+   "eth_send_coins": 50000
+  }
+ },
+ {
+  "coin": "WBTC-PLG20",
+  "name": "wbtc_plg20",
+  "fname": "Wrapped Bitcoin",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 137,
+  "decimals": 8,
+  "avg_blocktime": 1.8,
+  "required_confirmations": 20,
+  "protocol": {
+   "type": "ERC20",
+   "protocol_data": {
+    "platform": "POL",
+    "contract_address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6"
+   }
+  },
+  "derivation_path": "m/44'/60'"
+ },
+ {
+  "coin": "TRX",
+  "name": "tron",
+  "fname": "TRON",
+  "mm2": 1,
+  "wallet_only": true,
+  "decimals": 6,
+  "avg_blocktime": 0.45,
+  "required_confirmations": 1,
+  "derivation_path": "m/44'/195'",
+  "protocol": {
+   "type": "TRX",
+   "protocol_data": {
+    "network": "Mainnet"
+   }
+  }
+ },
+ {
+  "coin": "LBC",
+  "name": "lbrycrd",
+  "fname": "LBRY Credits",
+  "sign_message_prefix": "LBRYcrd Signed Message:\n",
+  "rpcport": 9245,
+  "pubtype": 85,
+  "p2shtype": 122,
+  "wiftype": 28,
+  "txfee": 10000,
+  "segwit": true,
+  "bech32_hrp": "lbc",
+  "mm2": 1,
+  "required_confirmations": 3,
+  "avg_blocktime": 150,
+  "protocol": {
+   "type": "UTXO",
+   "chain_variant": "LBC"
+  },
+  "derivation_path": "m/44'/140'"
+ },
+ {
+  "coin": "PIVX",
+  "name": "pivx",
+  "fname": "PIVX",
+  "is_privacy_coin": true,
+  "sign_message_prefix": "DarkNet Signed Message:\n",
+  "rpcport": 51473,
+  "pubtype": 30,
+  "p2shtype": 13,
+  "wiftype": 212,
+  "txfee": 100000,
+  "dust": 5460,
+  "mm2": 1,
+  "required_confirmations": 5,
+  "avg_blocktime": 60,
+  "protocol": {
+   "type": "UTXO",
+   "chain_variant": "PIVX"
+  },
+  "derivation_path": "m/44'/119'"
+ },
+ {
+  "coin": "BTC",
+  "name": "bitcoin",
+  "fname": "Bitcoin",
+  "rpcport": 8332,
+  "pubtype": 0,
+  "p2shtype": 5,
+  "wiftype": 128,
+  "segwit": true,
+  "bech32_hrp": "bc",
+  "txfee": 0,
+  "estimate_fee_mode": "ECONOMICAL",
+  "mm2": 1,
+  "sign_message_prefix": "Bitcoin Signed Message:\n",
+  "required_confirmations": 1,
+  "avg_blocktime": 600,
+  "protocol": {
+   "type": "UTXO",
+   "chain_variant": "BTC"
+  },
+  "derivation_path": "m/44'/0'",
+  "trezor_coin": "Bitcoin",
+  "links": {
+   "github": "https://github.com/bitcoin/bitcoin",
+   "homepage": "https://bitcoin.org"
+  }
+ },
+ {
+  "coin": "LTC-segwit",
+  "name": "litecoin",
+  "fname": "Litecoin",
+  "is_privacy_coin": true,
+  "sign_message_prefix": "Litecoin Signed Message:\n",
+  "rpcport": 9332,
+  "pubtype": 48,
+  "p2shtype": 50,
+  "wiftype": 176,
+  "txfee": 1000,
+  "dust": 5460,
+  "segwit": true,
+  "bech32_hrp": "ltc",
+  "address_format": {
+   "format": "segwit"
+  },
+  "orderbook_ticker": "LTC",
+  "mm2": 1,
+  "required_confirmations": 2,
+  "avg_blocktime": 150,
+  "protocol": {
+   "type": "UTXO"
+  },
+  "derivation_path": "m/84'/2'",
+  "trezor_coin": "Litecoin",
+  "links": {
+   "github": "https://github.com/litecoin-project/litecoin",
+   "homepage": "https://litecoin.org"
+  }
+ },
+ {
+  "coin": "POL",
+  "name": "polygon",
+  "fname": "Polygon",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 137,
+  "avg_blocktime": 1.8,
+  "required_confirmations": 20,
+  "protocol": {
+   "type": "ETH",
+   "protocol_data": {
+    "chain_id": 137
+   }
+  },
+  "trezor_coin": "Polygon",
+  "links": {
+   "homepage": "https://polygon.technology/"
+  },
+  "derivation_path": "m/44'/60'",
+  "max_eth_tx_type": 2,
+  "swap_gas_fee_policy": "Medium"
+ },
+ {
+  "coin": "USDC-PLG20",
+  "name": "usdc_plg20",
+  "fname": "USD Coin",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 137,
+  "decimals": 6,
+  "avg_blocktime": 1.8,
+  "required_confirmations": 20,
+  "protocol": {
+   "type": "ERC20",
+   "protocol_data": {
+    "platform": "POL",
+    "contract_address": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+   }
+  },
+  "derivation_path": "m/44'/60'",
+  "gas_limit": {
+   "eth_send_erc20": 70000,
+   "erc20_payment": 130000,
+   "erc20_receiver_spend": 100000,
+   "erc20_sender_refund": 100000
+  }
+ },
+ {
+  "coin": "USDC-ARB20",
+  "name": "usdc_arb20",
+  "fname": "USD Coin",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 42161,
+  "decimals": 6,
+  "avg_blocktime": 0.25,
+  "required_confirmations": 10,
+  "protocol": {
+   "type": "ERC20",
+   "protocol_data": {
+    "platform": "ETH-ARB20",
+    "contract_address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+   }
+  },
+  "derivation_path": "m/44'/60'"
+ },
+ {
+  "coin": "USDT-PLG20",
+  "name": "usdt_plg20",
+  "fname": "Tether",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 137,
+  "decimals": 6,
+  "avg_blocktime": 1.8,
+  "required_confirmations": 20,
+  "protocol": {
+   "type": "ERC20",
+   "protocol_data": {
+    "platform": "POL",
+    "contract_address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+   }
+  },
+  "derivation_path": "m/44'/60'",
+  "gas_limit": {
+   "eth_send_erc20": 70000,
+   "erc20_payment": 130000,
+   "erc20_receiver_spend": 100000,
+   "erc20_sender_refund": 100000
+  }
+ },
+ {
+  "coin": "USDT-ARB20",
+  "name": "usdt_arb20",
+  "fname": "Tether",
+  "rpcport": 80,
+  "mm2": 1,
+  "chain_id": 42161,
+  "decimals": 6,
+  "avg_blocktime": 0.25,
+  "required_confirmations": 10,
+  "protocol": {
+   "type": "ERC20",
+   "protocol_data": {
+    "platform": "ETH-ARB20",
+    "contract_address": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
+   }
+  },
+  "derivation_path": "m/44'/60'"
+ }
+]

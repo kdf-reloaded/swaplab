@@ -25,6 +25,9 @@ A scenario named `X-Y` means X is the maker and Y the taker:
 | `scenarios/G-R.json` | 6133 | GLEEC 3.x | Reloaded |
 
 Any other pair of binaries, netid or coin pair is just another scenario file.
+[scenarios/examples/](scenarios/examples/README.md) shows more: other coin kinds (legacy, merged-mining,
+shielded, EVM token) and extra node settings. [scripts/examples/](scripts/examples/README.md) has
+fault-injection runners (slow, lossy, restarted or killed nodes).
 
 > **Real money.** Swaps move real coins and pay real DEX and network fees, and a failed swap
 > can lock funds until its refund time, which can be hours. Use dedicated, small wallets. Read
@@ -82,6 +85,9 @@ extra ≥10 KMD coin used to test KMD rewards.
 |---|---|---|
 | `swaplab.py` | the command line | yes |
 | `scenarios/*.json` | one self-contained file per test | yes |
+| `scenarios/examples/` | more scenarios, with their own README | yes |
+| `scripts/examples/` | fault-injection runners (throttled, lossy, restarted or killed nodes) | yes |
+| `LICENSE` | Apache License 2.0 | yes |
 | `config/coins.json`, `config/electrums.json` | coin definitions and electrum servers | yes |
 | `config/binaries.example.json` | template for `config/binaries.json` | yes |
 | `config/binaries.json` | your binary paths | **no** |
@@ -105,3 +111,10 @@ pre-commit hook: `ln -sf ../../scripts/check-secrets.sh .git/hooks/pre-commit`.
 - evidence
 - recovering a stuck swap
 - troubleshooting
+
+[docs/example-test-plan.md](docs/example-test-plan.md) is an example of a release-gate plan built from the
+scenarios and scripts.
+
+## License
+
+Apache License 2.0, see [LICENSE](LICENSE).

@@ -1,0 +1,59 @@
+{
+  "name": "mewc-rin-header-layout",
+  "description": "Block-header layout declared in the coin entry (coins-header-layouts.json): 100 MEWC for 5 RIN. Shows a scenario that uses its own coins file.",
+  "netid": 8762,
+  "subnet": "10.87.62.0/24",
+  "seed_mode": "private",
+  "seed": {
+    "flavor": "R",
+    "ip": "10.87.62.10",
+    "host_port": 7800
+  },
+  "maker": {
+    "flavor": "R",
+    "wallet": "W1",
+    "ip": "10.87.62.20",
+    "host_port": 7801
+  },
+  "taker": {
+    "flavor": "R",
+    "wallet": "W2",
+    "ip": "10.87.62.30",
+    "host_port": 7802
+  },
+  "coins_file": "scenarios/examples/coins-header-layouts.json",
+  "electrums": "scenarios/examples/electrums.json",
+  "coins": [
+    "MEWC",
+    "RIN"
+  ],
+  "trade": {
+    "base": "MEWC",
+    "rel": "RIN",
+    "price": "0.05",
+    "volume": "100"
+  },
+  "timeouts": {
+    "rpc": 120,
+    "peers": 180,
+    "order_visible": 180,
+    "swap": 14400
+  },
+  "keep_running_if_active": true,
+  "fee_buffer": {
+    "MEWC": "0.0001",
+    "RIN": "0.0001"
+  },
+  "expect": {
+    "baseline": [
+      {
+        "result": "success"
+      }
+    ],
+    "fixed": [
+      {
+        "result": "success"
+      }
+    ]
+  }
+}

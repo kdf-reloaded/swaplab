@@ -1,0 +1,59 @@
+{
+  "name": "doge-rin",
+  "description": "A legacy UTXO coin with tiny amounts: 0.3 DOGE for 15 RIN. Shows how to pick a trade size above both dust limits.",
+  "netid": 8762,
+  "subnet": "10.87.62.0/24",
+  "seed_mode": "private",
+  "seed": {
+    "flavor": "R",
+    "ip": "10.87.62.10",
+    "host_port": 7800
+  },
+  "maker": {
+    "flavor": "R",
+    "wallet": "W1",
+    "ip": "10.87.62.20",
+    "host_port": 7801
+  },
+  "taker": {
+    "flavor": "R",
+    "wallet": "W2",
+    "ip": "10.87.62.30",
+    "host_port": 7802
+  },
+  "coins_file": "scenarios/examples/coins.json",
+  "electrums": "scenarios/examples/electrums.json",
+  "coins": [
+    "DOGE",
+    "RIN"
+  ],
+  "trade": {
+    "base": "DOGE",
+    "rel": "RIN",
+    "price": "50",
+    "volume": "0.3"
+  },
+  "timeouts": {
+    "rpc": 120,
+    "peers": 180,
+    "order_visible": 180,
+    "swap": 14400
+  },
+  "keep_running_if_active": true,
+  "fee_buffer": {
+    "DOGE": "0.0001",
+    "RIN": "0.0001"
+  },
+  "expect": {
+    "baseline": [
+      {
+        "result": "success"
+      }
+    ],
+    "fixed": [
+      {
+        "result": "success"
+      }
+    ]
+  }
+}

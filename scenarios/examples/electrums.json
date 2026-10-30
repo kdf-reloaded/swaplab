@@ -1,0 +1,500 @@
+{
+ "RIN": [
+  {
+   "url": "peer1.rincoin.tech:50002",
+   "protocol": "SSL",
+   "ws_url": "peer1.rincoin.tech:50004"
+  },
+  {
+   "url": "peer2.rincoin.tech:50002",
+   "protocol": "SSL",
+   "ws_url": "peer2.rincoin.tech:50004"
+  },
+  {
+   "url": "peer3.rincoin.tech:50002",
+   "protocol": "SSL",
+   "ws_url": "peer3.rincoin.tech:50004"
+  }
+ ],
+ "KMD": [
+  {
+   "url": "kmd.electrum3.cipig.net:20001",
+   "protocol": "SSL",
+   "ws_url": "kmd.electrum3.cipig.net:30001"
+  },
+  {
+   "url": "kmd.electrum3.cipig.net:10001"
+  },
+  {
+   "url": "kmd.electrum1.cipig.net:20001",
+   "protocol": "SSL",
+   "ws_url": "kmd.electrum1.cipig.net:30001"
+  },
+  {
+   "url": "kmd.electrum1.cipig.net:10001"
+  },
+  {
+   "url": "kmd.electrum2.cipig.net:10001"
+  },
+  {
+   "url": "kmd.electrum2.cipig.net:20001",
+   "protocol": "SSL",
+   "ws_url": "kmd.electrum2.cipig.net:30001"
+  }
+ ],
+ "LTC": [
+  {
+   "url": "ltc.electrum1.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum1.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum3.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum3.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum2.cipig.net:10063"
+  },
+  {
+   "url": "ltc.electrum3.cipig.net:10063"
+  },
+  {
+   "url": "ltc.electrum2.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum2.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum1.cipig.net:10063"
+  }
+ ],
+ "DOGE": [
+  {
+   "url": "doge.electrum1.cipig.net:10060"
+  },
+  {
+   "url": "doge.electrum3.cipig.net:10060"
+  },
+  {
+   "url": "doge.electrum2.cipig.net:10060"
+  },
+  {
+   "url": "doge.electrum2.cipig.net:20060",
+   "protocol": "SSL",
+   "ws_url": "doge.electrum2.cipig.net:30060"
+  },
+  {
+   "url": "doge.electrum3.cipig.net:20060",
+   "protocol": "SSL",
+   "ws_url": "doge.electrum3.cipig.net:30060"
+  },
+  {
+   "url": "doge.electrum1.cipig.net:20060",
+   "protocol": "SSL",
+   "ws_url": "doge.electrum1.cipig.net:30060"
+  }
+ ],
+ "DINGO": [
+  {
+   "url": "elecx1.dingocoin.com:3342",
+   "ws_url": "elecx1.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "elecx1.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "elecx2.dingocoin.com:3342",
+   "ws_url": "elecx2.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "elecx2.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "delecx.twinkykms.com:3342",
+   "ws_url": "delecx.twinkykms.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "delecx.twinkykms.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "seed1.dingocoin.com:3342",
+   "ws_url": "seed1.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "seed1.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "seed2.dingocoin.com:3342",
+   "ws_url": "seed2.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "seed2.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "seed3.dingocoin.com:3342",
+   "ws_url": "seed3.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "seed3.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "seed4.dingocoin.com:3342",
+   "ws_url": "seed4.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "seed4.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "seed5.dingocoin.com:3342",
+   "ws_url": "seed5.dingocoin.com:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "seed5.dingocoin.com:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "elecx.kmsoftware.org:3342",
+   "ws_url": "elecx.kmsoftware.org:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "elecx.kmsoftware.org:3339",
+   "protocol": "TCP"
+  },
+  {
+   "url": "elecx2.kmsoftware.org:3342",
+   "ws_url": "elecx2.kmsoftware.org:3341",
+   "protocol": "SSL"
+  },
+  {
+   "url": "elecx2.kmsoftware.org:3339",
+   "protocol": "TCP"
+  }
+ ],
+ "SHIC": [
+  {
+   "url": "electrum.shibacoinshic.org:50003",
+   "ws_url": "electrum.shibacoinshic.org:50002",
+   "protocol": "SSL"
+  },
+  {
+   "url": "electrum.shibacoinshic.org:50001",
+   "protocol": "TCP"
+  }
+ ],
+ "TRMP": [
+  {
+   "url": "electrum-server1.trumpow.meme:50002",
+   "ws_url": "electrum-server1.trumpow.meme:50004",
+   "protocol": "SSL"
+  },
+  {
+   "url": "electrum-server1.trumpow.meme:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "electrum-server2.trumpow.meme:50002",
+   "ws_url": "electrum-server2.trumpow.meme:50004",
+   "protocol": "SSL"
+  },
+  {
+   "url": "electrum-server2.trumpow.meme:50001",
+   "protocol": "TCP"
+  }
+ ],
+ "XVG": [
+  {
+   "url": "159.69.73.223:5036"
+  },
+  {
+   "url": "electrum-verge.cloud:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "electrum-verge.cloud:50002",
+   "protocol": "SSL",
+   "ws_url": "electrum-verge.cloud:50004"
+  },
+  {
+   "url": "electrumx-verge.cloud:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "electrumx-verge.cloud:50002",
+   "protocol": "SSL",
+   "ws_url": "electrumx-verge.cloud:50004"
+  }
+ ],
+ "SYS": [
+  {
+   "url": "sys.electrum1.cipig.net:20064",
+   "protocol": "SSL",
+   "ws_url": "sys.electrum1.cipig.net:30064"
+  },
+  {
+   "url": "sys.electrum1.cipig.net:10064"
+  },
+  {
+   "url": "sys.electrum2.cipig.net:20064",
+   "protocol": "SSL",
+   "ws_url": "sys.electrum2.cipig.net:30064"
+  },
+  {
+   "url": "sys.electrum2.cipig.net:10064"
+  },
+  {
+   "url": "sys.electrum3.cipig.net:20064",
+   "protocol": "SSL",
+   "ws_url": "sys.electrum3.cipig.net:30064"
+  },
+  {
+   "url": "sys.electrum3.cipig.net:10064"
+  }
+ ],
+ "NMC": [
+  {
+   "url": "nmc2.bitcoins.sk:57001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "nmc2.bitcoins.sk:57002",
+   "protocol": "SSL"
+  },
+  {
+   "url": "namecoin.stackwallet.com:57002",
+   "protocol": "SSL"
+  }
+ ],
+ "DOI": [
+  {
+   "url": "itchy-jellyfish-89.doi.works:50002",
+   "protocol": "SSL",
+   "ws_url": "itchy-jellyfish-89.doi.works:50004"
+  },
+  {
+   "url": "big-parrot-60.doi.works:50002",
+   "protocol": "SSL",
+   "ws_url": "big-parrot-60.doi.works:50004"
+  },
+  {
+   "url": "pink-deer-69.doi.works:50002",
+   "protocol": "SSL",
+   "ws_url": "pink-deer-69.doi.works:50004"
+  },
+  {
+   "url": "pink-deer-69.doi.works:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "ugly-bird-70.doi.works:50002",
+   "protocol": "SSL",
+   "ws_url": "ugly-bird-70.doi.works:50004"
+  }
+ ],
+ "XMY": [
+  {
+   "url": "xmy-ex-one.ewmci.online:50002",
+   "ws_url": "xmy-ex-one.ewmci.online:50003",
+   "protocol": "SSL"
+  },
+  {
+   "url": "xmy-ex-one.ewmci.online:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "xmy-ex-two.ewmci.online:50002",
+   "ws_url": "xmy-ex-two.ewmci.online:50003",
+   "protocol": "SSL"
+  },
+  {
+   "url": "xmy-ex-two.ewmci.online:50001",
+   "protocol": "TCP"
+  }
+ ],
+ "RIC": [
+  {
+   "url": "ric.electrum2.cipig.net:20074",
+   "ws_url": "ric.electrum2.cipig.net:30074",
+   "protocol": "SSL"
+  },
+  {
+   "url": "ric.electrum1.cipig.net:20074",
+   "ws_url": "ric.electrum1.cipig.net:30074",
+   "protocol": "SSL"
+  },
+  {
+   "url": "ric-ex-two.ewmci.online:50002",
+   "ws_url": "ric-ex-two.ewmci.online:50003",
+   "protocol": "SSL"
+  },
+  {
+   "url": "ric-ex-two.ewmci.online:50001",
+   "protocol": "TCP"
+  },
+  {
+   "url": "ric.electrum3.cipig.net:20074",
+   "ws_url": "ric.electrum3.cipig.net:30074",
+   "protocol": "SSL"
+  }
+ ],
+ "MEWC": [
+  {
+   "url": "electrs.mewccrypto.com:50002",
+   "protocol": "SSL",
+   "ws_url": "electrs.mewccrypto.com:50004"
+  },
+  {
+   "url": "electrs2.mewccrypto.com:50002",
+   "protocol": "SSL",
+   "ws_url": "electrs2.mewccrypto.com:50004"
+  },
+  {
+   "url": "electrs3.meowcoin.org:50002",
+   "protocol": "SSL",
+   "ws_url": "electrs3.meowcoin.org:50004"
+  },
+  {
+   "url": "electrs4.meowcoin.org:50002",
+   "protocol": "SSL",
+   "ws_url": "electrs4.meowcoin.org:50004"
+  },
+  {
+   "url": "electrs5.meowcoin.org:50002",
+   "protocol": "SSL",
+   "ws_url": "electrs5.meowcoin.org:50004"
+  }
+ ],
+ "RXD": [
+  {
+   "url": "electrumx.radiant4people.com:50012",
+   "protocol": "SSL",
+   "ws_url": "electrumx.radiant4people.com:50022"
+  },
+  {
+   "url": "electrumx2.radiant4people.com:50012",
+   "protocol": "SSL",
+   "ws_url": "electrumx2.radiant4people.com:50022"
+  },
+  {
+   "url": "electrumx.rxd-radiant.com:50012",
+   "protocol": "SSL",
+   "ws_url": "electrumx.rxd-radiant.com:50011"
+  },
+  {
+   "url": "electrumx-eu.rxd-radiant.com:50012",
+   "protocol": "SSL",
+   "ws_url": "electrumx-eu.rxd-radiant.com:50011"
+  }
+ ],
+ "LBC": [
+  {
+   "url": "lbc.electrum1.cipig.net:10067"
+  },
+  {
+   "url": "lbc.electrum2.cipig.net:10067"
+  },
+  {
+   "url": "lbc.electrum3.cipig.net:10067"
+  },
+  {
+   "url": "lbc.electrum1.cipig.net:20067",
+   "protocol": "SSL",
+   "ws_url": "lbc.electrum1.cipig.net:30067"
+  },
+  {
+   "url": "lbc.electrum2.cipig.net:20067",
+   "protocol": "SSL",
+   "ws_url": "lbc.electrum2.cipig.net:30067"
+  },
+  {
+   "url": "lbc.electrum3.cipig.net:20067",
+   "protocol": "SSL",
+   "ws_url": "lbc.electrum3.cipig.net:30067"
+  }
+ ],
+ "PIVX": [
+  {
+   "url": "electrum01.chainster.org:50001"
+  },
+  {
+   "url": "electrum02.chainster.org:50001"
+  },
+  {
+   "url": "electrum01.chainster.org:50002",
+   "protocol": "SSL",
+   "ws_url": "electrum01.chainster.org:50003"
+  },
+  {
+   "url": "electrum02.chainster.org:50002",
+   "protocol": "SSL",
+   "ws_url": "electrum02.chainster.org:50003"
+  }
+ ],
+ "BTC": [
+  {
+   "url": "btc.electrum1.cipig.net:10000"
+  },
+  {
+   "url": "btc.electrum3.cipig.net:10000"
+  },
+  {
+   "url": "btc.electrum1.cipig.net:20000",
+   "protocol": "SSL",
+   "ws_url": "btc.electrum1.cipig.net:30000"
+  },
+  {
+   "url": "btc.electrum2.cipig.net:20000",
+   "protocol": "SSL",
+   "ws_url": "btc.electrum2.cipig.net:30000"
+  },
+  {
+   "url": "btc.electrum2.cipig.net:10000"
+  },
+  {
+   "url": "btc.electrum3.cipig.net:20000",
+   "protocol": "SSL",
+   "ws_url": "btc.electrum3.cipig.net:30000"
+  }
+ ],
+ "LTC-segwit": [
+  {
+   "url": "ltc.electrum1.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum1.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum3.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum3.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum2.cipig.net:10063"
+  },
+  {
+   "url": "ltc.electrum3.cipig.net:10063"
+  },
+  {
+   "url": "ltc.electrum2.cipig.net:20063",
+   "protocol": "SSL",
+   "ws_url": "ltc.electrum2.cipig.net:30063"
+  },
+  {
+   "url": "ltc.electrum1.cipig.net:10063"
+  }
+ ]
+}
