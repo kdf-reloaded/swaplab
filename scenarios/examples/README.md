@@ -23,7 +23,7 @@ starts.
 | File | What it shows | Maker, taker, seed | Trade (maker sells) | Needs |
 |---|---|---|---|---|
 | `rin-kmd-r-k.json` | Mixed flavors: Reloaded maker, Komodo 2.6 taker and seed. A coin pair that is not the default LTC/KMD. | R, K, K (netid 8762) | 5 RIN for 0.325 KMD | W1: RIN; W2: KMD |
-| `g-g-rin-kmd.json` | Reference against reference on the GLEEC network, to see an upstream build alone before comparing your own. | G, G, G (netid 6133) | 5 RIN for 0.325 KMD | W1: RIN; W2: KMD |
+| `g-g-rin-kmd.json` | The same implementation (GLEEC 3.x) on all three nodes of the GLEEC network, to see one build alone before you compare it with others. | G, G, G (netid 6133) | 5 RIN for 0.325 KMD | W1: RIN; W2: KMD |
 | `doge-rin.json` | A legacy UTXO coin with tiny amounts: how to choose a trade size above both dust limits. | R, R, R | 0.3 DOGE for 15 RIN | W1: DOGE; W2: RIN |
 | `rxd-rin.json` | A coin with its own signature-hash rule (Radiant): signing of HTLC payment and spend. | R, R, R | 100 RXD for 5 RIN | W1: RXD; W2: RIN |
 | `nmc-rin-no-spend-check.json` | A merged-mining (AuxPoW) coin, and `mm2_extra`: extra keys written into MM2.json of every node (here the pre-trade spend check is switched off). | R, R, R | 0.001 NMC for 0.5 RIN | W1: NMC; W2: RIN |

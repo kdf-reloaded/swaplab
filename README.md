@@ -9,8 +9,10 @@ whole swap: the harness
 - lets the taker take exactly that order,
 - follows the swap to its end and exports every log with a one-page `SUMMARY.md`.
 
-It was written to compare KDF implementations against each other. Flavors:
-- **R**: KDF Reloaded, the build under test.
+It was written to compare KDF implementations against each other. The three flavors are
+independent third-party products, each under its own license and none of them part of this
+repository; swaplab treats them as equals and any of them can be the build under test:
+- **R**: KDF Reloaded.
 - **K**: Komodo KDF 2.6.0-beta, netid 8762.
 - **G**: GLEEC KDF 3.x, netid 6133.
 
@@ -88,6 +90,7 @@ extra ≥10 KMD coin used to test KMD rewards.
 | `scenarios/examples/` | more scenarios, with their own README | yes |
 | `scripts/examples/` | fault-injection runners (throttled, lossy, restarted or killed nodes) | yes |
 | `LICENSE` | Apache License 2.0 | yes |
+| `CLAUDE.md` | how an agent or developer uses swaplab to test a KDF change | yes |
 | `config/coins.json`, `config/electrums.json` | coin definitions and electrum servers | yes |
 | `config/binaries.example.json` | template for `config/binaries.json` | yes |
 | `config/binaries.json` | your binary paths | **no** |
