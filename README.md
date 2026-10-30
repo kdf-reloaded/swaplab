@@ -45,7 +45,7 @@ fault-injection runners (slow, lossy, restarted or killed nodes).
 ## Quickstart
 
 ```sh
-git clone <this repository> kdf-swaplab && cd kdf-swaplab
+git clone https://github.com/kdf-reloaded/swaplab.git kdf-swaplab && cd kdf-swaplab
 
 # 1. Binaries: download the release zips (K and G) and point the config at them
 mkdir -p bin && cd bin
